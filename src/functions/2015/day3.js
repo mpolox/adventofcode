@@ -17,8 +17,7 @@ const Y2015_Day3 = (data) => {
       myXY.value += 1;
     } else {
       coords.push(newCoord(x,y));
-    }
-    
+    }    
   }
 
   const Part1 = () => {
@@ -37,19 +36,6 @@ const Y2015_Day3 = (data) => {
       addXY(5,3);
       addXY(5,3);
       addXY(5,3);            
-
-
-    // let positionsY = [0,0];
-    // let positionsX = [positionsY];
-
-
-
-    // positionsX.push([0,0]);
-    // //positionsX[1][0] = 92;
-    // positionsX.push([0,0]);
-
-    // positionsX[2][2] = 23;
-
 
     console.log("coords", coords);
     return("floor");
