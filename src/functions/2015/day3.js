@@ -7,7 +7,7 @@ const Y2015_Day3 = (data) => {
     return {
     "x": x,
     "y": y, 
-    "value" : 0
+    "value" : 1
     }
   }
 
@@ -21,24 +21,29 @@ const Y2015_Day3 = (data) => {
   }
 
   const Part1 = () => {
-      coords.push(newCoord(0,0));
-      const item1 = {"x": 1 ,"y": 1, "value" : 0 }
-      coords.push(item1);
-      const item2 = {"x": 2 ,"y": 1, "value" : 0 }
-      coords.push(item2);      
-      const item3 = {"x": 3 ,"y": 1, "value" : 0 }
-      coords.push(item3);
-      const item4 = {"x": 4 ,"y": 1, "value" : 0 }
-      coords.push(item4);
+    coords.push(newCoord(0,0));
+    let x = 0
+    let y = 0;
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      switch (element) {
+        case "<":
+          x -= 1;
+          break;
+        case ">":
+          x += 1
+          break;
+        case "v":
+          y += 1          
+          break;      
+        default:
+          y -= 1;
+          break;
+      }
+      addXY(x,y);
+    }
 
-      addXY(3,1);
-      addXY(1,1);
-      addXY(5,3);
-      addXY(5,3);
-      addXY(5,3);            
-
-    console.log("coords", coords);
-    return("floor");
+    return(coords.length);
   }
 
   const Part2 = () => {
