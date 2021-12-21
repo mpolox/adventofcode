@@ -11,7 +11,8 @@ const Y2015_Day3 = (data) => {
     }
   }
 
-  const addXY = (x,y) => {
+  const addXY = ({x,y}) => {
+    //find that XY position on saved coordenates
     let myXY = coords.find((coord) => (coord.x === x && coord.y === y));
     if (myXY) {
       myXY.value += 1;
@@ -20,34 +21,58 @@ const Y2015_Day3 = (data) => {
     }    
   }
 
+  const getCoords = (element, position) => {
+
+    switch (element) {
+      case "<":
+        position.x -= 1;
+        break;
+      case ">":
+        position.x += 1
+        break;
+      case "v":
+        position.y += 1          
+        break;      
+      default:
+        position.y -= 1;
+        break;
+    }
+    return position;
+  }
+
   const Part1 = () => {
+    coords = [];
     coords.push(newCoord(0,0));
-    let x = 0
-    let y = 0;
+    let santaPosition = { "x" : 0, "y" : 0  }
+
     for (let i = 0; i < data.length; i++) {
       const element = data[i];
-      switch (element) {
-        case "<":
-          x -= 1;
-          break;
-        case ">":
-          x += 1
-          break;
-        case "v":
-          y += 1          
-          break;      
-        default:
-          y -= 1;
-          break;
-      }
-      addXY(x,y);
+      santaPosition = getCoords(element,santaPosition);
+      addXY(santaPosition);
     }
 
     return(coords.length);
   }
 
   const Part2 = () => {
-    return "basement";
+    coords = [];
+    coords.push(newCoord(0,0));
+    let santaPosition = { "x" : 0, "y" : 0 }
+    let robotPosition = { "x" : 0, "y" : 0 }
+
+    for (let i = 0; i < data.length; i++) {
+      const isOdd = i % 2;
+      const element = data[i];
+      if (isOdd) { 
+        santaPosition = getCoords(element,santaPosition);
+        addXY(santaPosition); 
+      }
+      else { 
+        robotPosition = getCoords(element,robotPosition);
+        addXY(robotPosition); 
+      }
+    }
+    return(coords.length);    
   }
 
   const response = {
