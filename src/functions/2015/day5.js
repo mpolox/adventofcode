@@ -1,4 +1,6 @@
 const Y2015_Day5 = (data) => {
+  const charA = 97;
+  const charZ = 122 + 1;
 
   const meetsRule1 = (word) => {
     let vowels = 0;
@@ -15,8 +17,6 @@ const Y2015_Day5 = (data) => {
   }
 
   const meetsRule2 = (word) => {
-    const charA = 97;
-    const charZ = 122 + 1;
     for (let i = charA; i < charZ; i++) {
       const chars = String.fromCharCode(i) + String.fromCharCode(i);
       const isFound = word.search(chars);
@@ -40,6 +40,22 @@ const Y2015_Day5 = (data) => {
     return true;
   }  
 
+  const meetsRule4 = (word) => {
+    const charSetStr = word.match("(..).*\\1");
+    if (charSetStr) {
+      return true;
+    }
+    return false;
+  }
+
+  const meetsRule5 = (word) => {
+    const charSetStr = word.match("(.).\\1");
+    if (charSetStr) {
+      return true;
+    }
+    return false;
+  }
+
   const Part1 = () => {
     let niceWords = 0;
     for (let i = 0; i < data.length; i++) {
@@ -52,7 +68,14 @@ const Y2015_Day5 = (data) => {
   }
 
   const Part2 = () => {
-    return("TBD");
+    let niceWords = 0;
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      if (meetsRule4(element) && meetsRule5(element)) {
+        niceWords += 1;
+      }
+    }
+    return(niceWords);
   }
   
   const response = {
