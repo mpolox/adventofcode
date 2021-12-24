@@ -1,5 +1,5 @@
 const getWords = (word) => {
-    const words = word.match("[A-Za-z0-9]");
+    const words = word.match(/([a-z0-9])+/g);
     return words;
 }
 
