@@ -1,17 +1,28 @@
+import { getWords } from "../common/words";
+
 const Y2015_Day6 = (data) => {
 
   const newMatrix = () => {
-    let myMatrix;
-    for (let i = 0; i < 1000; i++) {
-      for (let j = 0; j < 1000; j++) {
-        myMatrix[i][j] = false;
+    let matrix = [];
+    for (let y = 0; y < 1000; y++) {
+      let vectorX = [];
+      for (let x = 0; x < 1000; x++) {
+        vectorX[x] = false;      
       }      
+      matrix[y] = vectorX;
     }
-    return myMatrix
-  }
+    return matrix;
+  }    
 
   const Part1 = () => {
+    for (let dataIndex = 0; dataIndex < data.length; dataIndex++) {
+      const element = data[dataIndex];
+      const words = getWords(element);
+      console.log("W",words);
+    }
+
     let myMatrix = newMatrix();
+    myMatrix[0][0] = true;
     console.log(myMatrix);
     return("TBD");
   }
