@@ -1,5 +1,5 @@
 import { getWords } from "../common/words";
-import { newMatrix } from "../common/matrix";
+import { newMatrix, newMatrixInt } from "../common/matrix";
 
 const Y2015_Day6 = (data) => {
 
@@ -55,7 +55,36 @@ const Y2015_Day6 = (data) => {
   }
 
   const Part2 = () => {
-    return("TBD");
+    let myMatrix = newMatrixInt(1000,1000);
+    for (let dataIndex = 0; dataIndex < data.length; dataIndex++) {
+      const element = data[dataIndex];
+      const words = getWords(element);
+      const actions = getActions(words);
+
+      for (let i = actions.x1; i < actions.x2+1; i++) {
+        for (let j = actions.y1; j < actions.y2+1; j++) {
+          if (actions.action === "toggle") {
+            myMatrix[i][j] += 2;
+          } else if (actions.action) {
+            myMatrix[i][j] += 1;
+          } else {            
+            myMatrix[i][j] -= 1;
+            if (myMatrix[i][j] < 0) {
+              myMatrix[i][j] = 0;
+            }
+          }
+        }
+      }
+    }
+
+    let onCount = 0;
+    for (let i = 0; i < 1000; i++) {
+      for (let j = 0; j < 1000; j++) {
+        onCount +=  myMatrix[i][j];
+      }
+    }
+
+    return(onCount);
   }
   
   const response = {
