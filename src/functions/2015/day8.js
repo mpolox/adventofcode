@@ -23,9 +23,9 @@ const Y2015_Day8 = (data) => {
       let element = data[i];
       codeLength += element.length;      
       element = "X" + element.substring(1,element.length-1) + "X";
-      element = element.replace(/\\/g,"ZZ");           // \  -> Z
-      element = element.replace(/"/g,"WW");            // "  -> W
-      element = element.replace(/X/g,"YYY");           // "  -> W
+      element = element.replace(/\\/g,"ZZ");           // \  -> ZZ
+      element = element.replace(/"/g,"WW");            // "  -> WW
+      element = element.replace(/X/g,"YYY");           // X  -> YYY
       strLenght += element.length;
     }    
     return(strLenght - codeLength);
